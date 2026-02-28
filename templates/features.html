@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title cms="featureName" class="cms-inner">Feature Name</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #fafafa;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #0066cc;
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid #eaeaea;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        header {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            margin: 0 0 0.5rem 0;
+            font-family: monospace;
+            color: #111;
+            font-size: 2rem;
+        }
+
+        .type-badge {
+            display: inline-block;
+            font-size: 0.85rem;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            color: #111;
+            margin-top: 2rem;
+        }
+
+        p {
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <p><a href="/" class="back-link">&larr; Back to Documentation</a></p>
+
+    <div class="card">
+        <header>
+            <span cms="featureType" class="cms-inner type-badge">Type</span>
+            <h1><span cms="featureName" class="cms-inner">Feature Name</span></h1>
+        </header>
+
+        <section>
+            <h2>What it does</h2>
+            <p cms="longDesc" class="cms-inner">Detailed explanation of how this feature works goes here...</p>
+        </section>
+
+        <section>
+            <h2>Example Usage</h2>
+            <pre><code cms="exampleCode" class="cms-inner">Example code here...</code></pre>
+        </section>
+    </div>
+
+</body>
+
+</html>

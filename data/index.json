@@ -1,0 +1,8 @@
+{
+    "pageTitle": {
+        "inner": "HTML-First CMS Demonstration"
+    },
+    "welcomeMessage": {
+        "inner": "This template serves as a live demonstration of how our custom DOM-parsing engine works."
+    }
+}

@@ -1,0 +1,110 @@
+[
+    {
+        "slug": "cms-attribute",
+        "featureName": {
+            "inner": "cms=\"key\""
+        },
+        "featureType": {
+            "inner": "Attribute"
+        },
+        "shortDesc": {
+            "inner": "The core data binding attribute."
+        },
+        "longDesc": {
+            "inner": "The cms=\"key\" attribute tells the parser to look into the current JSON data scope for a specific key. It sets the context for this element and all its children. If the key exists in the JSON, the data scope is narrowed down to that specific object or array."
+        },
+        "exampleCode": {
+            "inner": "<div cms=\"userData\">\n    <!-- children here use userData -->\n</div>"
+        }
+    },
+    {
+        "slug": "cms-inner",
+        "featureName": {
+            "inner": "cms-inner"
+        },
+        "featureType": {
+            "inner": "Class"
+        },
+        "shortDesc": {
+            "inner": "Replaces the inner text of an element."
+        },
+        "longDesc": {
+            "inner": "When an element has the class 'cms-inner' and a cms attribute, the parser will take the 'inner' property from the JSON data and insert it as text content inside the HTML element, replacing any placeholder text."
+        },
+        "exampleCode": {
+            "inner": "JSON: { \"title\": { \"inner\": \"Hello World\" } }\nHTML: <h1 cms=\"title\" class=\"cms-inner\">Placeholder</h1>\nResult: <h1>Hello World</h1>"
+        }
+    },
+    {
+        "slug": "cms-repeat",
+        "featureName": {
+            "inner": "cms-repeat"
+        },
+        "featureType": {
+            "inner": "Class"
+        },
+        "shortDesc": {
+            "inner": "Loops over a JSON array to create lists."
+        },
+        "longDesc": {
+            "inner": "The 'cms-repeat' class tells the engine to expect an array of objects in the JSON data. The HTML element with this class acts as a template. The engine will parse the array, clone the HTML element for each item, populate it with the item's data, and then delete the original template node."
+        },
+        "exampleCode": {
+            "inner": "<ul cms=\"items\" class=\"cms-repeat\">\n    <li cms=\"itemName\" class=\"cms-inner\">Item</li>\n</ul>"
+        }
+    },
+    {
+        "slug": "cms-href",
+        "featureName": {
+            "inner": "cms-href"
+        },
+        "featureType": {
+            "inner": "Class"
+        },
+        "shortDesc": {
+            "inner": "Injects a URL into an href attribute."
+        },
+        "longDesc": {
+            "inner": "If you want to make a link dynamic, use the 'cms-href' class. The parser will look for an 'href' property in the JSON data and apply it to the <a> tag's href attribute."
+        },
+        "exampleCode": {
+            "inner": "JSON: { \"myLink\": { \"href\": \"/about\", \"inner\": \"About Us\" } }\nHTML: <a cms=\"myLink\" class=\"cms-inner cms-href\" href=\"#\">Link</a>"
+        }
+    },
+    {
+        "slug": "cms-collection",
+        "featureName": {
+            "inner": "cms-collection"
+        },
+        "featureType": {
+            "inner": "Attribute"
+        },
+        "shortDesc": {
+            "inner": "Fetches external JSON files directly."
+        },
+        "longDesc": {
+            "inner": "The 'cms-collection=\"name\"' attribute instructs the engine to ignore the current data context and load a completely new JSON file from the data/ directory (e.g., data/name.json). This allows you to build autonomous components that fetch their own data."
+        },
+        "exampleCode": {
+            "inner": "<div cms-collection=\"news\" cms-limit=\"3\" class=\"cms-repeat\">\n    <!-- Renders 3 items from data/news.json -->\n</div>"
+        }
+    },
+    {
+        "slug": "cms-collection-link",
+        "featureName": {
+            "inner": "cms-collection-link"
+        },
+        "featureType": {
+            "inner": "Attribute"
+        },
+        "shortDesc": {
+            "inner": "Automatically generates routes for collections."
+        },
+        "longDesc": {
+            "inner": "When iterating over a collection fetched via cms-collection, using cms-collection-link=\"true\" on an <a> tag will automatically generate an href in the format /collectionName/itemSlug. This makes linking to detail pages effortless."
+        },
+        "exampleCode": {
+            "inner": "<a cms-collection-link=\"true\" href=\"#\">View Detail</a>"
+        }
+    }
+]

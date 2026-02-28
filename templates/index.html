@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title cms="pageTitle" class="cms-inner">Fallback Title</title>
+    <style>
+        body {
+            font-family: system-ui, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #fafafa;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            color: #111;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        li {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #eaeaea;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        li h3 {
+            margin-top: 0;
+            font-family: monospace;
+            color: #0066cc;
+        }
+
+        .type-badge {
+            font-family: sans-serif;
+            font-size: 0.8rem;
+            background: #eee;
+            color: #555;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            vertical-align: middle;
+        }
+
+        a {
+            display: inline-block;
+            background: #111;
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: opacity 0.2s;
+        }
+
+        a:hover {
+            opacity: 0.8;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 2rem 0;
+        }
+
+        footer {
+            text-align: center;
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>CMS Documentation Engine</h1>
+        <p cms="welcomeMessage" class="cms-inner">Fallback welcome message</p>
+    </header>
+
+    <main>
+        <section>
+            <h2>Available HTML Tags & Classes</h2>
+            <p>
+                This list is generated automatically by using <code>class="cms-collection-features"</code> on the
+                <code>&lt;li&gt;</code> tag below. Click on any feature to visit its dynamically generated subpage to
+                learn how it works.
+            </p>
+
+            <ul>
+                <!-- The loop starts here -->
+                <li class="cms-collection-features cms-repeat">
+                    <h3>
+                        <span cms="featureName" class="cms-inner">Feature Name</span>
+                        <span cms="featureType" class="cms-inner type-badge">Type</span>
+                    </h3>
+
+                    <p cms="shortDesc" class="cms-inner">Short description.</p>
+
+                    <!-- Dynamic link generation -->
+                    <p style="margin-bottom: 0;">
+                        <a class="cms-item-link" href="#">
+                            Learn How It Works &rarr;
+                        </a>
+                    </p>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>Built with CloudFlow Custom Engine</p>
+    </footer>
+</body>
+
+</html>
