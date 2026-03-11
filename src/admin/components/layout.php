@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CloudFlow Admin</title>
+    <title>Planalite Admin</title>
     <!-- Tailwind CSS (CDN for POC) -->
     <script src="https://cdn.tailwindcss.com"></script>
     

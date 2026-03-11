@@ -39,7 +39,7 @@
 
             <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2 dark:bg-gray-900 dark:ring dark:ring-white/10 dark:before:pointer-events-none dark:before:absolute dark:before:inset-0 dark:before:bg-black/10">
                 <div class="flex h-16 shrink-0 items-center font-bold text-xl dark:text-white pt-4">
-                    CloudFlow CMS
+                    Planalite
                 </div>
                 <!-- Mobile Navigation (Reusing PHP loop) -->
                 <nav class="flex flex-1 flex-col">
