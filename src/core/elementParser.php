@@ -55,10 +55,31 @@ function parseElement($contextNode, $data, DOMDocument $dom) {
     if (is_array($nodeData)) {
         if (hasClass($contextNode, 'cms-inner')) {
             $contextNode->nodeValue = ''; 
-            $contextNode->appendChild($dom->createTextNode($nodeData['inner'] ?? ''));
+            $htmlContent = $nodeData['inner'] ?? '';
+            if ($htmlContent !== '') {
+                $tempDom = new DOMDocument();
+                // We wrap the input in a standard HTML document template with UTF-8 encoding.
+                @$tempDom->loadHTML('<?xml encoding="UTF-8"><html><body>' . $htmlContent . '</body></html>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+                $bodyTags = $tempDom->getElementsByTagName('body');
+                if ($bodyTags->length > 0) {
+                    $bodyNode = $bodyTags->item(0);
+                    // Collect children before appending to avoid modifying the list while iterating
+                    $children = [];
+                    foreach ($bodyNode->childNodes as $child) {
+                        $children[] = $child;
+                    }
+                    foreach ($children as $child) {
+                        $importedNode = $dom->importNode($child, true);
+                        $contextNode->appendChild($importedNode);
+                    }
+                }
+            }
         }
         if (hasClass($contextNode, 'cms-href') && isset($nodeData['href'])) {
             $contextNode->setAttribute('href', $nodeData['href']);
+        }
+        if (hasClass($contextNode, 'cms-src') && isset($nodeData['src'])) {
+            $contextNode->setAttribute('src', $nodeData['src']);
         }
     }
 

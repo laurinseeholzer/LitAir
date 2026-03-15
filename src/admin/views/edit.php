@@ -150,15 +150,55 @@ if ($isCollection) {
                 <?= $itemTitle ?>
             </h2>
         </div>
-        <div class="mt-4 flex shrink-0 md:mt-0 md:ml-4">
+        <div class="mt-4 flex shrink-0 md:mt-0 md:ml-4 gap-2 flex-wrap">
+            <?php if (!$isCollection): ?>
+            <!-- Generate from Template button — singletons only; collections use the list view -->
+            <form method="POST" action="admin.php?action=scaffold" onsubmit="return confirm('This will scan the template and add any missing fields to the JSON. Existing data will NOT be changed. Continue?')">
+                <input type="hidden" name="target" value="<?= htmlspecialchars($target) ?>">
+                <button type="submit" class="inline-flex items-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:shadow-none dark:ring-white/5 dark:hover:bg-white/20">
+                    <svg class="-ml-0.5 size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138.75.75 0 0 0-1.449-.39Zm1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219Z" clip-rule="evenodd" />
+                    </svg>
+                    Generate from Template
+                </button>
+            </form>
+            <?php endif; ?>
             <a href="admin.php<?= $isCollection ? "?action=list&target=" . urlencode($target) : "" ?>" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:shadow-none dark:ring-white/5 dark:hover:bg-white/20">
                 Cancel
             </a>
-            <button type="submit" form="edit-form" class="ml-3 inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500">
+            <button type="submit" form="edit-form" class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:shadow-none dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500">
                 Save Content
             </button>
         </div>
     </div>
+
+    <?php if (isset($_GET['scaffold_ok'])): ?>
+    <div class="rounded-md bg-green-50 p-4 mb-6 dark:bg-green-900/30">
+        <div class="flex">
+            <svg class="size-5 text-green-400 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm3.857-9.809a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
+            </svg>
+            <div class="ml-3">
+                <h3 class="text-sm font-medium text-green-800 dark:text-green-200">Template scaffolded successfully</h3>
+                <p class="mt-1 text-sm text-green-700 dark:text-green-300">Missing fields were added from the template. Existing data was not changed. Review the JSON below and save when ready.</p>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
+
+    <?php if (isset($_GET['scaffold_error'])): ?>
+    <div class="rounded-md bg-yellow-50 p-4 mb-6 dark:bg-yellow-900/30">
+        <div class="flex">
+            <svg class="size-5 text-yellow-400 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" />
+            </svg>
+            <div class="ml-3">
+                <h3 class="text-sm font-medium text-yellow-800 dark:text-yellow-200">Could not scaffold</h3>
+                <p class="mt-1 text-sm text-yellow-700 dark:text-yellow-300">The template file for this page could not be found.</p>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
 
     <!-- Editor Form Area -->
     <div class="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 dark:bg-gray-800 dark:ring-white/10">
